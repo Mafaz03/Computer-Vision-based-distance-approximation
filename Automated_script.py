@@ -7,13 +7,12 @@ import numpy as np
 from tqdm import tqdm
 
 print("""
- _______  ___   __   __  __   __  ___      _______  _______  ___   _______  __    _ 
-|       ||   | |  |_|  ||  | |  ||   |    |   _   ||       ||   | |       ||  |  | |
-|  _____||   | |       ||  | |  ||   |    |  |_|  ||_     _||   | |   _   ||   |_| |
-| |_____ |   | |       ||  |_|  ||   |    |       |  |   |  |   | |  | |  ||       |
-|_____  ||   | |       ||       ||   |___ |       |  |   |  |   | |  |_|  ||  _    |
- _____| ||   | | ||_|| ||       ||       ||   _   |  |   |  |   | |       || | |   |
-|_______||___| |_|   |_||_______||_______||__| |__|  |___|  |___| |_______||_|  |__|
+███████╗██╗███╗   ███╗██╗   ██╗██╗      █████╗ ████████╗██╗ ██████╗ ███╗   ██╗
+██╔════╝██║████╗ ████║██║   ██║██║     ██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║
+███████╗██║██╔████╔██║██║   ██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║
+╚════██║██║██║╚██╔╝██║██║   ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║
+███████║██║██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║
+╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝|
 """)
 
 #Multi_cars_5/multi_cars
@@ -152,7 +151,6 @@ for i in range(result.shape[0]):
         test_df = pd.concat([test_df ,  temp_df] , axis=0)
 
 
-    
     if result.iloc[i].name == -1 and car_no != max-1:
         c = car_no
         # print(c)
@@ -167,7 +165,7 @@ print("Filling values completed successfully")
 result_final = test_df[:test_df.shape[0]-4]
 result_final_2 = pd.DataFrame(columns=("x" , "y"))
 for i in range(0 , result_final.shape[0] , 5):
-    cropped = result_final[0:5].sort_values(by = "x").set_index(pd.Index([f"Car{i}" for i in range(max)]))
+    cropped = result_final[i:i+max].sort_values(by = "x").set_index(pd.Index([f"Car{i}" for i in range(max)]))
     result_final_2 = pd.concat([result_final_2 , cropped])
 print("Sorting frame batches completed successfully")
 
